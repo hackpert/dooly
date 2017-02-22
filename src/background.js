@@ -6,7 +6,10 @@ Array.prototype.randomElement = function () {
 
 chrome.extension.onConnect.addListener(function(port) {
 	console.assert(port.name == "randomtaskgetter");
-	var task = JSON.parse(localStorage.tasks).randomElement();
+	var task;
+	if(localStorage.tasks) {
+	task = JSON.parse(localStorage.tasks).randomElement();
+	}
 	console.log(task);
 	port.onMessage.addListener(function(msg) {
 		if (msg.request == "SendTask")

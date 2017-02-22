@@ -13,12 +13,13 @@ function getTasks(){
 function refreshTasks(){
 	taskList = document.getElementById('taskList');
 	var html = '';
+	if(localStorage.tasks) {
 	tasks = JSON.parse(localStorage.tasks);
 	for(var i = 0; i < tasks.length; i++) {
 		html += '<li class="taskItem" data-index=' + i + '>' + tasks[i] + '</li>';
 	}
-	console.log(html);
 	taskList.innerHTML = html;
+	}
 }
 
 function deleteTask(index) {
